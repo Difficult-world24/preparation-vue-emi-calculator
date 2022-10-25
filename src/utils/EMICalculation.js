@@ -22,7 +22,16 @@ function calculateEMI(loanObject) {
     totalInterest: Math.round(interest),
     totalAmount: Math.round(full),
   };
-  console.log(calculatedLoan);
+
+  if (!emi || !interest) {
+    return {
+      emi: 0,
+      principalAmount: 0,
+      totalInterest: 0,
+      totalAmount: 0,
+    };
+  }
+
   return calculatedLoan;
 }
 

@@ -20,13 +20,9 @@ function App() {
   const handleChange = (event) => {
     let { name, value } = event.target;
 
-    //To make sure our number Input is always greater 0
-    // So our calculation won't break!
-    if (value > 0) {
-      setLoanForm((prevState) => {
-        return { ...prevState, [name]: parseInt(value) };
-      });
-    }
+    setLoanForm((prevState) => {
+      return { ...prevState, [name]: value };
+    });
   };
 
   const generateLoanReport = () => {
@@ -44,32 +40,23 @@ function App() {
     <>
       <Navbar />
       <div className="w-screen  p-4 ">
-        <section className="flex justify-around w-full items-center">
-          <div className="w-2/5 h-[350px] mb-28 flex flex-col items-start justify-between">
-            <p className="text-3xl font-semibold text-gray-700 my-5 pl-1">
-              Easy Way To Calculate Your EMI. ₹
+        <section className="flex flex-col md:flex-row justify-around w-full items-center">
+          <div className="w-full sm:w-3/5 lg:w-2/5  md:h-[350px] md:mb-28 flex flex-col items-center lg:items-start justify-between">
+            <p className="text-lg md:text-2xl  font-semibold text-gray-700 my-5 pl-1">
+              Easy Way To Calculate Your EMI ₹
             </p>
-            <div className="w-full border h-[30rem] flex items-stretch justify-between gap-2 bg-slate-100 shadow-md rounded-md p-3">
-              <div className="flex gap-3  flex-col items-center justify-between">
+            <div className="w-full  border h-auto md:h-[30rem] flex flex-col sm:flex-row items-stretch justify-between gap-2 bg-slate-100 shadow-md rounded-md p-3">
+              <div className="flex gap-3 mb-2 sm:mb-0 flex-col items-center justify-between">
                 <Input
-                  value={
-                    !loanForm.principalAmount
-                      ? defaultLoanForm.principalAmount
-                      : loanForm.principalAmount
-                  }
+                  value={loanForm.principalAmount}
                   onChange={handleChange}
                   labelText="Principal Amount ₹"
                   type="number"
                   id="principalAmount"
                   name="principalAmount"
-                  min={"1"}
                 />
                 <Input
-                  value={
-                    !loanForm.interestRate
-                      ? defaultLoanForm.interestRate
-                      : loanForm.interestRate
-                  }
+                  value={loanForm.interestRate}
                   onChange={handleChange}
                   min={"1"}
                   max={"20"}
@@ -80,14 +67,10 @@ function App() {
                 />
 
                 <Input
-                  value={
-                    !loanForm.tentureYears
-                      ? defaultLoanForm.tentureYears
-                      : loanForm.tentureYears
-                  }
+                  value={loanForm.tentureYears}
                   onChange={handleChange}
                   min={"1"}
-                  max={"20"}
+                  max={"5"}
                   type="number"
                   id="tentureYears"
                   labelText="Loan Tenture (Years)"
@@ -113,7 +96,7 @@ function App() {
               <EMIReport report={loanReport} />
             </div>
           </div>
-          <div className="w-2/5">
+          <div className="hidden lg:block w-2/5">
             <img src={sectionImage} alt="Bussiness Management" />
           </div>
         </section>

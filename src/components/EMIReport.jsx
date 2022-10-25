@@ -1,5 +1,5 @@
 import React from "react";
-
+import humanRead from "../utils/HumanRead";
 import Input from "./Input";
 
 const EMIReport = (props) => {
@@ -7,26 +7,24 @@ const EMIReport = (props) => {
   const { emi, totalInterest } = report;
 
   return (
-    <div className="flex w-full items-center justify-between flex-col">
-      <ul className="flex flex-col w-82 gap-3">
-        <Input
-          value={!emi ? 0 : emi}
-          readOnly
-          type="text"
-          id="totalEmi"
-          name="totalEmi"
-          labelText="Total EMI"
-        />
+    <div className="flex w-full items-center justify-start flex-col">
+      <Input
+        value={!emi ? 0 : humanRead(emi)}
+        readOnly
+        type="text"
+        id="totalEmi"
+        name="totalEmi"
+        labelText="Total EMI ₹"
+      />
 
-        <Input
-          value={!totalInterest ? 0 : totalInterest}
-          readOnly
-          type="text"
-          labelText="Total Interest"
-          id="totalInterest"
-          name="totalInterest"
-        />
-      </ul>
+      <Input
+        value={!totalInterest ? 0 : humanRead(totalInterest)}
+        readOnly
+        type="text"
+        labelText="Total Interest"
+        id="totalInterest"
+        name="totalInterest"
+      />
     </div>
   );
 };
