@@ -7,7 +7,7 @@ const EMIReport = (props) => {
   const { emi, totalInterest } = report;
 
   return (
-    <div className="flex w-full items-center justify-start flex-col">
+    <div className="flex w-full gap-3 items-center justify-start flex-col">
       <Input
         value={!emi ? 0 : humanRead(emi)}
         readOnly
